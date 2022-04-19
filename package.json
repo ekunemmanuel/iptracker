@@ -8,6 +8,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "axios": "^0.26.1",
     "dotenv": "^16.0.0",
     "leaflet": "^1.7.1",
     "vue": "^3.2.31",
