@@ -3,11 +3,14 @@ import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import leaflet from "leaflet";
 import IpInfo from "./IpInfo.vue";
-
+import axios from "axios";
 const ip = ref("");
+const Ipinfo = ref(null);
+const location = ref(null);
+let myMap;
+
 onMounted(() => {
-  let map;
-  map = leaflet.map("map").setView([51.505, -0.09], 13);
+  myMap = leaflet.map("map").setView([51.505, -0.09], 13);
   leaflet
     .tileLayer(
       "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicGFibG9kYWxwaGEiLCJhIjoiY2wxaGN5dGZtMDNuNjNjcWx2ZHJ6bmMzbSJ9.lzihlzjJGb0E_B0viYNQyw",
@@ -22,8 +25,42 @@ onMounted(() => {
           "pk.eyJ1IjoicGFibG9kYWxwaGEiLCJhIjoiY2wxaGN5dGZtMDNuNjNjcWx2ZHJ6bmMzbSJ9.lzihlzjJGb0E_B0viYNQyw",
       }
     )
-    .addTo(map);
+    .addTo(myMap);
 });
+const getIpInfo = async () => {
+  try {
+    const { data } = await axios.get(
+      `http://ip-api.com/json/${ip.value}?fields=status,message,continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,reverse,mobile,proxy,hosting,query`
+    );
+    ip.value = "";
+    Ipinfo.value = [
+      {
+        title: "IP address",
+        info: data.query,
+      },
+      {
+        title: "Location",
+        info: data.city,
+      },
+      {
+        title: "Timezone",
+        info: `UTC ${data.timezone}`,
+      },
+      {
+        title: "ISP",
+        info: data.isp,
+      },
+    ];
+    location.value = {
+      lat: data.lat,
+      lon: data.lon,
+    };
+    leaflet.marker([location.value.lat, location.value.lon]).addTo(myMap);
+    myMap.setView([location.value.lat, location.value.lon], 13);
+  } catch (error) {
+    alert(error);
+  }
+};
 </script>
 
 <template>
@@ -40,18 +77,21 @@ onMounted(() => {
           </h1>
           <div class="flex">
             <input
+              @keyup.enter="getIpInfo"
               type="text"
               v-model="ip"
               class="flex-1 py-3 px-2 rounded-tl-md rounded-bl-md outline-[0]"
               placeholder="Search for any IP address or leave empty to get your ip address info"
             />
-            <i
-              class="fa-solid fa-angles-right cursor-pointer text-white bg-black px-4 py-4 rounded-tr-md flex items-center rounded-br-md"
-            ></i>
+            <div @click="getIpInfo">
+              <i
+                class="fa-solid fa-angles-right cursor-pointer text-white bg-black px-4 py-4 rounded-tr-md flex items-center rounded-br-md"
+              ></i>
+            </div>
           </div>
         </div>
         <!-- info -->
-        <IpInfo />
+        <IpInfo v-if="Ipinfo" :ipInfo="Ipinfo" />
       </div>
 
       <div id="map" class="h-full z-10"></div>
