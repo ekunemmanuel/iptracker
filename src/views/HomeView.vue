@@ -68,7 +68,7 @@ const getIpInfo = async () => {
     <div class="flex flex-col h-screen max-h-screen">
       <!-- search / result -->
       <div
-        class="z-20 flex justify-center bg-[hsl(5,87%,31%)] relative px-[1rem] pt-8 pb-32"
+        class="z-20 flex justify-center bg-[hsla(5,87%,31%,0)] relative px-[1rem] pt-8 pb-32"
       >
         <!-- search -->
         <div class="w-full max-w-screen-sm">

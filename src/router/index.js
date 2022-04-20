@@ -9,7 +9,7 @@ const router = createRouter({
       name: "home",
       component: HomeView,
       meta: {
-        title: "Ip Address",
+        title: "IP Address Tracker",
       },
     },
   ],
