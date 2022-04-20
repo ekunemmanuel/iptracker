@@ -69,16 +69,7 @@ const getIpInfo = async () => {
     <div class="flex flex-col h-screen max-h-screen">
       <!-- search / result -->
       <div
-        class="
-          z-20
-          flex
-          justify-center
-          bg-[hsla(5,87%,31%,0)]
-          relative
-          px-[1rem]
-          pt-8
-          pb-32
-        "
+        class="z-20 flex justify-center bg-[hsla(5,87%,31%,0)] relative px-[1rem] pt-8 pb-32"
       >
         <!-- search -->
         <div class="w-full max-w-screen-sm">
@@ -95,18 +86,7 @@ const getIpInfo = async () => {
             />
             <div @click="getIpInfo">
               <i
-                class="
-                  fa-solid fa-angles-right
-                  cursor-pointer
-                  text-white
-                  bg-black
-                  px-4
-                  py-4
-                  rounded-tr-md
-                  flex
-                  items-center
-                  rounded-br-md
-                "
+                class="fa-solid fa-angles-right cursor-pointer text-white bg-black px-4 py-4 rounded-tr-md flex items-center rounded-br-md"
               ></i>
             </div>
           </div>
