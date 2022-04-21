@@ -2,7 +2,7 @@
 import { ref } from "@vue/reactivity";
 import { onMounted } from "@vue/runtime-core";
 import leaflet from "leaflet";
-import IpInfo from "./IpInfo.vue";
+import IpInfo from "../components/IpInfo.vue";
 import axios from "axios";
 const ip = ref("");
 const Ipinfo = ref(null);
