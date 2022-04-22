@@ -12,6 +12,14 @@ const router = createRouter({
         title: "IP Address Tracker",
       },
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: "not-found",
+      component: () => import("@/views/PageNotFound.vue"),
+      meta: {
+        title: "Not Found",
+      },
+    },
   ],
 });
 
