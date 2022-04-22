@@ -3,14 +3,14 @@
 </script>
 
 <template>
-  <!-- <header>
+  <header class="relative">
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
+        <RouterLink to="/calculator">Calculator</RouterLink>
       </nav>
     </div>
-  </header> -->
+  </header>
 
   <RouterView />
 </template>
@@ -26,9 +26,13 @@
   font-weight: normal;
 }
 
-header {
+.wrapper {
   line-height: 1.5;
   max-height: 100vh;
+  position: fixed;
+  width: 100%;
+  z-index: 400;
+  color: rgb(0, 38, 255);
 }
 
 a,
@@ -40,7 +44,7 @@ a,
 
 @media (hover: hover) {
   a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
+    color: hsl(160, 100%, 37%);
   }
 }
 
@@ -48,11 +52,15 @@ nav {
   width: 100%;
   font-size: 12px;
   text-align: center;
-  margin-top: 2rem;
+  /* margin-top: 2rem; */
+  height: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 nav a.router-link-exact-active {
-  color: var(--color-text);
+  color: rgb(146, 145, 145);
 }
 
 nav a.router-link-exact-active:hover {
@@ -62,7 +70,7 @@ nav a.router-link-exact-active:hover {
 nav a {
   display: inline-block;
   padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
+  /* border-left: 1px solid var(--color-border); */
 }
 
 nav a:first-of-type {
