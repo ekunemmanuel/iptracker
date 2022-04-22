@@ -50,9 +50,7 @@ a,
 
 nav {
   width: 100%;
-  font-size: 12px;
   text-align: center;
-  /* margin-top: 2rem; */
   height: 3rem;
   display: flex;
   justify-content: center;
@@ -69,7 +67,7 @@ nav a.router-link-exact-active:hover {
 
 nav a {
   display: inline-block;
-  padding: 0 1rem;
+  padding: 0 0.5rem;
   /* border-left: 1px solid var(--color-border); */
 }
 
