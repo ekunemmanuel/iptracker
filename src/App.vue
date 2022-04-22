@@ -3,14 +3,13 @@
 </script>
 
 <template>
-  <header class="relative">
+  <!-- <header class="relative">
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/calculator">Calculator</RouterLink>
       </nav>
     </div>
-  </header>
+  </header> -->
 
   <RouterView />
 </template>
